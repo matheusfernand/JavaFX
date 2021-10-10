@@ -1,13 +1,18 @@
 package gui;
 
+import java.net.URL;
+import java.util.ResourceBundle;
+
 import gui.util.Alerts;
+import gui.util.Constraints;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
-public class ViewController {
+public class ViewController implements Initializable {
 
 	@FXML
 	private TextField txtNumber1;
@@ -32,4 +37,12 @@ public class ViewController {
 		catch (NumberFormatException e ) {
 			Alerts.showAlert("Error", "Parse error", e.getMessage(), AlertType.ERROR);}
 		}
+
+	@Override
+	public void initialize(URL url, ResourceBundle rb) {
+		Constraints.setTextFieldDouble(txtNumber1);
+		Constraints.setTextFieldDouble(txtNumber2);
+		Constraints.setTextFieldMaxLength(txtNumber1, 20);
+		Constraints.setTextFieldMaxLength(txtNumber2, 20);
+	}
 }
